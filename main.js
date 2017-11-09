@@ -14,7 +14,6 @@ hangman = {
     ],
     wordsRight: 0,
     remainingGuesses: 10,
-    initialWord: null,
 
     //Randomize words to start game 
     startGame: function() {
@@ -37,10 +36,13 @@ hangman = {
             console.log("You guessed: " + result.guessLet);
             var guessesMade = that.initialWord.checkLetter(result.guessLet);
 
+            //Show message if an incorrect guess is made
             if (guessesMade == 0) {
                 console.log("INCORRECT");
                 that.remainingGuesses--;
 
+            //Show message if a correct guess is made
+            //if entire word guessed show "You won!" message
             } else {
                 console.log("CORRECT");
                 if (that.initialWord.findWord()) {
@@ -52,7 +54,7 @@ hangman = {
 
             //prompt alerting remaining guesses per game
             //if amount of incorrect guesses is up --> game over 
-            console.log("Guesses remaining: " + that.remainingGuesses);
+            console.log("Remaining Guesses: " + that.remainingGuesses);
             console.log("-----");
             if ((that.remainingGuesses > 0) && (that.initialWord.found == false)) {
                 that.promptUser();
